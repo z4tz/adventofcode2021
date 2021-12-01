@@ -1,11 +1,12 @@
 from inputreader import aocinput
+from typing import List
 
 
-def depthincreases(depths, offset=1):
-    return sum([depths[i] < depths[i+offset] for i in range(len(depths)-offset)])
+def depthincreases(depths: List[int], offset: int = 1) -> int:
+    return sum([depths[i] < depths[i + offset] for i in range(len(depths) - offset)])
 
 
-def main(day):
+def main(day: int):
     data = aocinput(day)
     data = [int(line) for line in data]
     print(depthincreases(data))
