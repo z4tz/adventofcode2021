@@ -1,3 +1,4 @@
+import os
 from inputreader import aocinput
 
 
@@ -6,4 +7,4 @@ def main(day):
 
 
 if __name__ == '__main__':
-    main(int(__file__.split('/')[-1][3:-3]))
+    main(int(os.path.basename(__file__)[3:-3]))
