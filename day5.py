@@ -5,7 +5,7 @@ from collections import defaultdict
 
 
 def rangeSpecial(val1, val2):
-    """Generator extending range. Yields each integer numbers between the given values, including endpoints"""
+    """Generator extending range. Yields each integer number between the given values, including endpoints"""
     if val1 < val2:
         for val in range(val1, val2+1):
             yield val
