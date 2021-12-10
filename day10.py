@@ -21,12 +21,12 @@ def syntaxScore(data: List[str]) -> [int, int]:
     for line in data:
         stack = []
         for char in line.strip():
-            if char in syntax.values():
-                if not stack or char != syntax[stack.pop()]:
+            if char in syntax.keys():  # if opening bracket
+                stack.append(char)
+            else:  # closing brackets
+                if not stack or char != syntax[stack.pop()]:  # if stack is empty or bracket doesnt match the stack
                     score1 += scoreDict1[char]
                     break
-            else:
-                stack.append(char)
         else:
             tempscore = 0
             for char in reversed(stack):
