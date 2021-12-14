@@ -32,13 +32,12 @@ def commonElement(data: List[str], steps: int) -> int:
     return int(max(elementCount.values()) - min(elementCount.values()))
 
 
-
-
 def main(day):
     data = aocinput(day)
     result = commonElement(data, 10)
     result2 = commonElement(data, 40)
     print(result, result2)
+
 
 if __name__ == '__main__':
     main(int(os.path.basename(__file__)[3:-3]))
