@@ -26,19 +26,41 @@ def allVelocities(data: List[str]) -> int:
     vxmin = math.ceil(invertsum1ToN(target.xmin))
     vxmax = target.xmax
     vymin = target.ymin
-    vymax = target.ymax
+    vymax = abs(target.ymin)
 
-    # for each timestep?
-    for vx in range(vxmin, vxmax + 1):
+    initialVelocities = set()
+    for step in range(max([vxmax, vymax*2+1])):
+        xvels = []
+        yvels = []
+        for vx in range(vxmin, vxmax + 1):
+            if step > vx:
+                xpos = sumMToN(1, vx)
+            else:
+                xpos = sumMToN(vx-step, vx)
+            if target.xmin <= xpos <= target.xmax:
+                xvels.append(vx)
+            if xpos > target.xmax:
+                break
+
         for vy in range(vymin, vymax + 1):
-            pass
+            ypos = sumMToN(vy-step, vy)
+            if target.ymin <= ypos <= target.ymax:
+                yvels.append(vy)
+            if ypos > target.ymax:
+                break
+
+        for yvel in yvels:
+            for xvel in xvels:
+                initialVelocities.add((xvel, yvel))
+
+    return len(initialVelocities)
 
 
 def main(day):
     data = aocinput(day)
     result = maxHeight(data)
     result2 = allVelocities(data)
-    print(result)
+    print(result, result2)
 
 
 if __name__ == '__main__':
